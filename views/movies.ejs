@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') %>
+
+  <body>
+    <%- include('partials/header') %>
+      <div class="container">
+        <div class="col-12 my-4">
+          <form id="formMovies">
+            <div class="form-row d-flex justify-content-around">
+              <div class="form-group col-6">
+                <input type="text" class="form-control" placeholder="Buscar película por título o género">
+              </div>
+              <div class="form-group col-3">
+                <select class="custom-select" name="order" id="order">
+                  <option hidden selected>Ordenar por</option>
+                  <option value="title">Titulo</option>
+                  <option value="release_date">Fecha de estreno</option>
+                  <option value="recent">Ultimos agregados</option>
+                  <option value="default">Default</option>
+                </select>
+              </div>
+              <div class="form-group col-3">
+                <select class="custom-select" name="limit" id="limit">
+                  <option selected hidden>Mostrar</option>
+                  <option value=6>6 películas</option>
+                  <option value=12>12 películas</option>
+                  <option value=24>24 películas</option>
+                  <option value=48>48 películas</option>
+                  <option value=96>96 películas</option>
+                </select>
+
+              </div>
+            </div>
+          </form>
+        </div>
+        <div id="moviesBox" class="row m-3">
+
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+          <ul class="pagination" id="paginationBox">
+         
+
+          </ul>
+        </div>
+      </div>
+
+      <%- include('partials/footer') %>
+        <script src="/javascripts/movies.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') %>
+
+    <body>
+        <%- include('partials/header') %>
+            <div class="container mt-5">
+                <form method="POST" enctype="multipart/form-data">
+                    <h1 class="alert-primary">Agregar nueva película</h1>
+                    <div class="form-row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="">Titulo:</label>
+                                <input id="title" type="text" class="form-control" placeholder="Title" name="title"
+                                    value="<%=(typeof old != 'undefined' && old.title)?old.title:""  %>">
+                                <span class="text-danger">
+                                    <%= (typeof errors !='undefined' && errors.title)?errors.title.msg:"" %>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="">Duración:</label>
+                                <input id="length" type="number" class="form-control" placeholder="Duración" name="length"
+                                    value=<%=(typeof old != 'undefined' && old.length)?old.title:""  %>>
+                                <span class="text-danger">
+                                    <%= (typeof errors !='undefined' && errors.length)?errors.length.msg:"" %>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label for="">Rating:</label>
+                                <input id="rating" type="number" class="form-control" placeholder="rating" step="0.1" name="rating"
+                                    value="<%=(typeof old != 'undefined' && old.rating)?old.rating:""  %>">
+                                <span class="text-danger">
+                                    <%= (typeof errors !='undefined' && errors.rating)?errors.rating.msg:"" %>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                    <label for="">Imagen:</label>
+                                    <div id="boxImage" class="custom-file">
+                                        <input type="file" class="custom-file-input" id="image" name="image" lang="es">
+                                        <label id="labelImage" class="custom-file-label" for="image">Elija una imagen</label>
+                                    </div>
+                                    <div id="boxImage2" class="input-group" style="display: none;">
+                                        <input id="imageStorage" name="imageStorage" type="text" class="form-control" value="<%= typeof image != 'undefined' ? image : null %>">
+                                      </div>
+
+                                    <span id="errorImagen" class="text-danger">
+                                        <%= (typeof errors !='undefined' && errors.image)?errors.image.msg:"" %>
+                                    </span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-1">
+                            <label for="">Premios</label>
+                            <div class="form-group">
+                                <input id="awards" type="number" class="form-control" placeholder="Awards" name="awards"
+                                    value="<%=(typeof old != 'undefined' && old.awards)?old.awards:""  %>">
+                                <span class="text-danger">
+                                    <%= (typeof errors !='undefined' && errors.awards)?errors.awards.msg:"" %>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="">Fecha de estreno</label>
+                                <input id="release_date" type="date" class="form-control" title="Release Date" name="release_date"
+                                    value="<%=(typeof old != 'undefined' && old.release_date)?old.release_date:""  %>">
+                                <span class="text-danger">
+                                    <%= (typeof errors !='undefined' && errors.release_date)?errors.release_date.msg:""
+                                        %>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label for="">Género</label>
+                                <select class="form-control" name="genre_id" id="genre_id">
+                                    <option hidden selected>Elige el género</option>
+                                    <% generos.forEach(genero=> { %>
+                                        <option value=<%= genero.id %>>
+                                            <%= genero.name %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                                <span class="text-danger">
+                                    <%= (typeof errors !='undefined' && errors.genre)?errors.genre.msg:"" %>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="">Actores</label>
+                                <select class="form-control" name="actores" id="actores" multiple size="10">
+                                    <% actores.forEach(actor=> { %>
+                                        <option value="<%= actor.id %>">
+                                            <%= actor.first_name + ' ' + actor.last_name %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                              
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <img id="vistaPrevia" class="img-fluid" src="/images/<%= typeof image != 'undefined' ? image : null %> " alt="">
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-primary">Añadir</button>
+                    </div>
+
+                </form>
+            </div>
+
+
+
+
+
+
+            <%- include('partials/footer') %>
+            <script defer src="/javascripts/moviesValidator.js"></script>
+
+    </body>
+
+</html>

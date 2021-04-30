@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') %>
+
+  <body>
+    <%- include('partials/header') %>
+      <div class="container">
+        <div class="col-12 my-4">
+          <form action="">
+              <div class="form-row d-flex justify-content-around">
+                <div class="form-group col-6">
+                  <input type="text" class="form-control" placeholder="Buscar película por título o género">
+                </div>
+                <div class="form-group col-3">
+                  <select class="custom-select">
+                    <option  hidden selected>Ordenar por</option>
+                    <option value="1">Titulo</option>
+                    <option value="2">Fecha de estreno</option>
+                    <option value="3">Ultimos agregados</option>
+                  </select>
+                </div>
+                <div class="form-group col-3">
+                  <select class="custom-select">
+                    <option selected hidden>Mostrar</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+        </div>
+        <div class="row m-3">
+          <% peliculas.forEach(pelicula=> { %>
+            <div class="col-12 col-md-3 col-lg-2 mb-2">
+              <div class="card">
+                <img src="/images/<%=  pelicula.imagenes[0] != null ? pelicula.imagenes[0].archivo : 'notImage.png' %> "
+                  class="card-img-top" alt="...">
+
+                <div class="card-body">
+                  <h6 class="card-title">
+                    <%= pelicula.title %>
+                  </h6>
+                  <a href="/movies/detail/<%= pelicula.id %> " class="card-link">Más detalles</a>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+
+        </div>
+      </div>
+
+      <%- include('partials/footer') %>
+        <script src="/javascripts/movies.js"></script>
+  </body>
+
+</html>

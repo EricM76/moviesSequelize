@@ -4,8 +4,8 @@ module.exports = {
   "development": {
     "username": process.env.DB_USERNAME,
     "password": process.env.DB_PASS,
-    "database": 'movies_db',
-    "host": "localhost",
+    "database": process.env.DB_NAME,
+    "host": process.env.DB_HOST,
     "dialect": "mysql"
   },
   "test": {
